@@ -1,0 +1,6 @@
+@Back_KitLan_HostAddress = http://localhost:5163
+
+GET {{Back_KitLan_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
