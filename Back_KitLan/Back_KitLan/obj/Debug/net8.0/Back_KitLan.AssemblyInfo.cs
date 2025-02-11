@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Back_KitLan")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5992e75a654d1d9cf9c41893138e78114b53c16")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b5b6436d6124aaa57e9c50f5833c72c7b29449d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Back_KitLan")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Back_KitLan")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

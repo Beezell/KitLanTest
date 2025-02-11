@@ -1,6 +1,8 @@
 using Back_KitLan.Data;
 using Microsoft.EntityFrameworkCore;
 
+string? connectionFront = Environment.GetEnvironmentVariable("URL_FRONT");
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Définition d'une politique CORS
@@ -19,7 +21,7 @@ builder.Services.AddCors(options =>
 	options.AddPolicy(name: MyAllowSpecificOrigins,
 					  policy =>
 					  {
-						  policy.WithOrigins("http://localhost:4200") // Autorise Angular 
+						  policy.WithOrigins(connectionFront) // Autorise Angular 
 								.AllowAnyHeader()
 								.AllowAnyMethod();
 					  });
