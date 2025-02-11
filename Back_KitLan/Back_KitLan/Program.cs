@@ -3,22 +3,35 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Définition d'une politique CORS
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
+// Ajout des services au conteneur
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection String: {connectionString}");
 
+// Configuration de CORS
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy(name: MyAllowSpecificOrigins,
+					  policy =>
+					  {
+						  policy.WithOrigins("http://localhost:4200") // Autorise Angular 
+								.AllowAnyHeader()
+								.AllowAnyMethod();
+					  });
+});
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Activation de Swagger en mode développement
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
@@ -26,6 +39,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Activation de CORS (avant UseAuthorization)
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
